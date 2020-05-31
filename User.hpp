@@ -1,9 +1,9 @@
 class User : public UserInfo, public FriendList, public ListOfVisits
 {
 public:
-	User();
+	/*User();
 	User(const User& other);
-	User& operator=(const User& other);
+	User& operator=(const User& other);*/
 
 	void print() const;
 
@@ -15,15 +15,15 @@ public:
 	void saveDatabase() const;
 	void loadDatabase();
 };
-User::User():UserInfo(), FriendList(), ListOfVisits() {}
-User::User(const User& other) : UserInfo(other), FriendList(other), ListOfVisits(other) {}
-User& User::operator=(const User& other)
-{
-	UserInfo::operator=(other);
-	FriendList::operator=(other);
-	ListOfVisits::operator=(other);
-	return *this;
-}
+//User::User():UserInfo(), FriendList(), ListOfVisits() {}
+//User::User(const User& other) : UserInfo(other), FriendList(other), ListOfVisits(other) {}
+//User& User::operator=(const User& other)
+//{
+//	UserInfo::operator=(other);
+//	FriendList::operator=(other);
+//	ListOfVisits::operator=(other);
+//	return *this;
+//}
 
 void User::print() const
 {
