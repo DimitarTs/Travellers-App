@@ -3,25 +3,13 @@ class UserInfo
 	char* username;
 	char* password;
 	char* email;
-	bool validateUsername(const char* username)
-	{
-
-	}
-	bool validatePassword(const char* password)
-	{
-
-	}
-	bool validateEmail(const char* email)
-	{
-
-	}
 public:
 	UserInfo();
 	UserInfo(const UserInfo& other);
 	UserInfo(const char*, const char*, const char*);
 	~UserInfo();
 	UserInfo& operator=(const UserInfo&);
-	bool operator==(const UserInfo& other);
+	bool operator==(const UserInfo& other) const;
 
 	bool setUsername(const char*);
 	bool setPassword(const char*);
@@ -94,7 +82,7 @@ UserInfo& UserInfo::operator=(const UserInfo& other)
 	return *this;
 }
 
-bool UserInfo::operator==(const UserInfo& other)
+bool UserInfo::operator==(const UserInfo& other) const
 {
 	if (strcmp(username, other.username))
 		return false;

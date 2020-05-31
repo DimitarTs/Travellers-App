@@ -8,15 +8,9 @@ public:
 	~ListOfDestinations();
 	ListOfDestinations& operator=(const ListOfDestinations&);
 
-	Destination operator[](int index)
-	{
-		if (index < 0 or index >= numberOfDestinations)
-			index = 0;
+	Destination operator[](int index);
 
-		return destinations[index];
-	}
-
-	int getNumberOfDestinations() { return numberOfDestinations; }
+	int getNumberOfDestinations() const;
 
 	void addDestination(const Destination);
 	void removeDestination(const Destination);
@@ -60,6 +54,19 @@ ListOfDestinations& ListOfDestinations::operator=(const ListOfDestinations& othe
 	}
 	else destinations = nullptr;
 	return *this;
+}
+
+Destination ListOfDestinations::operator[](int index)
+{
+	if (index < 0 or index >= numberOfDestinations)
+		index = 0;
+
+	return destinations[index];
+}
+
+int ListOfDestinations::getNumberOfDestinations() const
+{ 
+	return numberOfDestinations; 
 }
 
 void ListOfDestinations::addDestination(const Destination dest)

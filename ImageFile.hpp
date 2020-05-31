@@ -13,7 +13,7 @@ public:
 	bool setType(const char*);
 	bool setImage(const char*);
 
-	bool operator==(const Image& other);
+	bool operator==(const Image& other) const;
 
 	void print() const;
 	void writeToFile(ofstream& f) const;
@@ -90,7 +90,6 @@ Image::Image()
 	setName("unknown");
 	setType("jpeg");
 }
-
 Image::Image(const Image& other)
 {
 	copyFrom(other);
@@ -109,7 +108,7 @@ Image& Image::operator=(const Image& other)
 	return *this;
 }
 
-bool Image::operator==(const Image& other)
+bool Image::operator==(const Image& other) const
 {
 	if (strcmp(type, other.type))
 		return false;

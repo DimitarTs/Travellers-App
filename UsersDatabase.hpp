@@ -8,13 +8,8 @@ public:
 	~UsersDatabase();
 	UsersDatabase& operator=(const UsersDatabase& other);
 
-	UserInfo operator[](int index)
-	{
-		if(index >=0 and index < numberOfUsers)
-			return users[index];
-		return UserInfo();
-	}
-	int getNumberOfUsers() const { return numberOfUsers; }
+	UserInfo operator[](int index);
+	int getNumberOfUsers() const;
 
 	bool usernameIsAvailable(const char*) const;
 	void addUser(const UserInfo);
@@ -58,6 +53,16 @@ UsersDatabase& UsersDatabase::operator=(const UsersDatabase& other)
 	return *this;
 }
 
+UserInfo UsersDatabase::operator[](int index)
+{
+	if (index >= 0 and index < numberOfUsers)
+		return users[index];
+	return UserInfo();
+}
+int UsersDatabase::getNumberOfUsers() const 
+{ 
+	return numberOfUsers; 
+}
 bool UsersDatabase::usernameIsAvailable(const char* username) const
 {
 	for (int i = 0; i < numberOfUsers; i++)

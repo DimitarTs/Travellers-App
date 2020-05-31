@@ -12,16 +12,9 @@ public:
 	Destination& operator=(const Destination& other);
 	~Destination();
 
-	bool operator==(const Destination& other)
-	{
-		if (strcmp(city, other.city))
-			return false;
-		if (strcmp(country, other.country))
-			return false;
-		return true;
-	}
+	bool operator==(const Destination& other) const;
 
-	void printRatings(const UsersDatabase);
+	void printRatings(const UsersDatabase) const;
 
 	void setCity(const char*);
 	void setCountry(const char*);
@@ -74,6 +67,14 @@ Destination& Destination::operator=(const Destination& other)
 	setCity(other.city);
 	setCountry(other.country);
 	return *this;
+}
+bool Destination::operator==(const Destination& other) const
+{
+	if (strcmp(city, other.city))
+		return false;
+	if (strcmp(country, other.country))
+		return false;
+	return true;
 }
 
 void Destination::copyFrom(const Destination& other)

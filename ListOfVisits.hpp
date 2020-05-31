@@ -14,13 +14,8 @@ public:
 	void addVisit(const Visit);
 	void removeVisit(int);
 
-	int getNumberOfVisits() { return numberOfVisits; }
-	Visit operator[](int index)
-	{
-		if (index >= 0 and index < numberOfVisits)
-			return visits[index];
-		return Visit();
-	}
+	int getNumberOfVisits() const;
+	Visit operator[](int index);
 
 	void print() const;
 	void writeToFile(ofstream& f) const;
@@ -96,6 +91,18 @@ void ListOfVisits::removeVisit(int index)
 	numberOfVisits--;
 	delete[] visits;
 	visits = newVisits;
+}
+
+int ListOfVisits::getNumberOfVisits() const
+{ 
+	return numberOfVisits; 
+}
+
+Visit ListOfVisits::operator[](int index)
+{
+	if (index >= 0 and index < numberOfVisits)
+		return visits[index];
+	return Visit();
 }
 
 void ListOfVisits::print() const

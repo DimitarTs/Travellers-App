@@ -11,13 +11,14 @@ public:
 	void setStart(int, int, int);
 	void setEnd(int, int, int);
 	void setTimePeriod(int, int, int, int, int, int);
+	Date getStart() const;
+	Date getEnd() const;
 	void print(bool) const;
 	void writeToFile(ofstream& f) const;
 	void readFromFile(ifstream& f);
 };
 
 TimePeriod::TimePeriod() :start(2000, 1, 1), end(2000, 1, 1) {}
-
 TimePeriod::TimePeriod(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay) :
 	start(startYear, startMonth, startDay), end(endYear, endMonth, endDay)
 {
@@ -61,6 +62,15 @@ void TimePeriod::setTimePeriod(int startYear, int startMonth, int startDay, int 
 	end.setYear(endYear);
 
 	fixTimePeriod();
+}
+
+Date TimePeriod::getStart() const
+{
+	return start;
+}
+Date TimePeriod::getEnd() const
+{
+	return end;
 }
 
 void TimePeriod::print(bool oneRow = false) const

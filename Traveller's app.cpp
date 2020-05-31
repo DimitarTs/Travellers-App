@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-int strToInt(char* source, int &index, bool updateIndex = true)
+int strToInt(const char* source, int &index, bool updateIndex = true)
 {
 	int res = 0, i = index;
 	while (source[i] == ' ') i++;
@@ -17,7 +17,6 @@ int strToInt(char* source, int &index, bool updateIndex = true)
 		index = i;
 	return res;
 }
-
 void extractWord(const char* source, char* destination, int& startIndex, int limit, bool keepStartIndex = false, char divider = ' ')
 {
 	int index = startIndex;
@@ -51,7 +50,7 @@ void extractWord(const char* source, char* destination, int& startIndex, int lim
 #include "UsersDatabase.hpp"
 #include "User.hpp"
 
-void Destination::printRatings(UsersDatabase database)
+void Destination::printRatings(UsersDatabase database) const
 {
 	int numberOfGrades = 0;
 	double avgGrade = 0;
@@ -129,7 +128,6 @@ void startup()
 	cout << "exit                                     - exit program\n";
 	cout << endl;
 }
-
 void afterLogin()
 {
 	cout << "Possible actions:\n";
@@ -276,7 +274,7 @@ int main()
 			else if (!strcmp(command, "visits"))
 			{
 				cout << endl;
-				user.printVisits();
+				((ListOfVisits*)&user) -> print();
 			}
 			else if (!strcmp(command, "newvisit"))
 			{
@@ -301,7 +299,7 @@ int main()
 			else if (!strcmp(command, "friends"))
 			{
 				cout << endl;
-				user.printFriends();
+				((FriendList*)&user)->print();
 			}
 			else if (!strcmp(command, "addfriend"))
 			{
@@ -368,6 +366,8 @@ int main()
 		}
 	} while (strcmp(command, "exit"));
 	cout << "Exiting...\n";
+	if (loggedIn)
+		user.saveDatabase();
 	ofstream g;
 	g.open("users.db", ios::binary | ios::trunc);
 	database.writeToFile(g);

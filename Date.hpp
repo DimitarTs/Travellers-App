@@ -38,9 +38,9 @@ public:
 	void setDay(int);
 	void setMonth(int);
 	void setYear(int);
-	int getDay() const { return day; }
-	int getMonth() const { return month; }
-	int getYear() const { return year; }
+	int getDay() const;
+	int getMonth() const;
+	int getYear() const;
 
 	void print() const;
 	void writeToFile(ofstream& f) const;
@@ -53,7 +53,6 @@ Date::Date()
 	month = 1;
 	day = 1;
 }
-
 Date::Date(int year, int month, int day)
 {
 	if (year <= 0)
@@ -73,19 +72,30 @@ void Date::setDay(int day)
 		day = 1;
 	this->day = day;
 }
-
 void Date::setMonth(int month)
 {
 	if (month <= 0 or month > 12)
 		month = 1;
 	this->month = month;
 }
-
 void Date::setYear(int year)
 {
 	if (year <= 0)
 		year = 2000;
 	this->year = year;
+}
+
+int Date::getDay() const
+{
+	return day;
+}
+int Date::getMonth() const
+{
+	return month;
+}
+int Date::getYear() const
+{
+	return year;
 }
 
 void Date::print() const

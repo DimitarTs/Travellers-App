@@ -16,13 +16,8 @@ public:
 	void removeFriend(const char*);
 	void removeFriend(const UserInfo);
 
-	const char* getFriend(int index) const
-	{
-		if (index < 0 or index >= numberOfFriends)
-			index = 0;
-		return friends[index];
-	}
-	int getNumberOfFriends() const { return numberOfFriends; }
+	const char* getFriend(int index) const;
+	int getNumberOfFriends() const;
 
 	void print() const;
 	void writeToFile(ofstream& f) const;
@@ -144,6 +139,17 @@ void FriendList::removeFriend(const UserInfo other)
 	removeFriend(other.getUsername());
 }
 
+const char* FriendList::getFriend(int index) const
+{
+	if (index < 0 or index >= numberOfFriends)
+		index = 0;
+	return friends[index];
+}
+
+int FriendList::getNumberOfFriends() const 
+{ 
+	return numberOfFriends; 
+}
 
 void FriendList::print() const
 {

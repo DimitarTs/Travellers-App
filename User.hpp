@@ -6,17 +6,8 @@ public:
 	User& operator=(const User& other);
 
 	void print() const;
-	void printVisits() const { ListOfVisits::print(); }
-	void printFriends() const { FriendList::print(); }
 
-	Destination inputNewVisit()
-	{
-		Visit addition;
-		addition.input();
-		addVisit(addition);
-		saveDatabase();
-		return addition;
-	}
+	Destination inputNewVisit();
 
 	void writeToFile(ofstream& f) const;
 	void readFromFile(ifstream& f);
@@ -42,6 +33,15 @@ void User::print() const
 	FriendList::print();
 	cout << "\n";
 	ListOfVisits::print();
+}
+
+Destination User::inputNewVisit()
+{
+	Visit addition;
+	addition.input();
+	addVisit(addition);
+	saveDatabase();
+	return addition;
 }
 
 void User::writeToFile(ofstream& f) const
@@ -105,7 +105,6 @@ void User::saveDatabase() const
 	g.close();
 	delete[] filename;
 }
-
 void User::loadDatabase()
 {
 	int len = strlen(getUsername()) + 4;
